@@ -16,12 +16,17 @@ int largestNumInArray(std::vector<int> array, int max, int pointer) {
 int secondLargest(std::vector<int> array) {
 
   int largest{INT_MIN};
-  int secondLargest;
+  int secondLargest{INT_MIN};
 
   for (auto it : array) {
-    
+    if (it > largest) {
+      secondLargest = largest;
+      largest = it;
+    } else if (it > secondLargest && it < largest) {
+      secondLargest = it;
+    }
   }
-
+  return secondLargest;
 }
 
 int main() {
@@ -31,5 +36,8 @@ int main() {
   std::vector<int> array{1, 5, 4, 7, 9, 3, 6, 4, -5};
   std::cout << largestNumInArray(array, array[0], 0);
   std::cout << '\n';
+  std::cout << secondLargest(array);
+  std::cout << '\n';
+
   return 0;
 }
