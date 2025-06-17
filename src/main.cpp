@@ -1,4 +1,5 @@
 #include <climits>
+#include <cstdio>
 #include <iostream>
 #include <vector>
 
@@ -37,6 +38,16 @@ bool isSorted(std::vector<int> array) {
   return (c == array.size() - 2);
 }
 
+void removeDupes(std::vector<int> &array) {
+
+  for (int i{0}; i + 1 < array.size(); ++i) {
+    if (array[i] == array[i + 1]) {
+      array.erase(array.begin() + i);
+      i--;
+    }
+  }
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -46,7 +57,13 @@ int main() {
   std::cout << '\n';
   std::cout << secondLargest(array);
   std::cout << '\n';
-  std::cout << isSorted({1, 1,2,2,4,4,5,5});
+  std::cout << isSorted({1, 1, 2, 2, 4, 4, 5, 5});
+  std::cout << '\n';
+
+  removeDupes(array);
+  for (auto it : array) {
+    std::cout << it << " ";
+  }
   std::cout << '\n';
 
   return 0;
