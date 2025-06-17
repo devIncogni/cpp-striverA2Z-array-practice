@@ -1,0 +1,8 @@
+{
+  "code-runner.executorMap": {
+    "cpp": "cd $dir && /usr/bin/clang++ $fileName -o $fileNameWithoutExt && clear && $dir$fileNameWithoutExt && printf \"\n\""
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.saveFileBeforeRun": true
+}
