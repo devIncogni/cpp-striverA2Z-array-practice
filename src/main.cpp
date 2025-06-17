@@ -29,6 +29,14 @@ int secondLargest(std::vector<int> array) {
   return secondLargest;
 }
 
+bool isSorted(std::vector<int> array) {
+  int i{0}, j{1}, c{0};
+  while (array[i++] <= array[j++] && j < array.size()) {
+    c++;
+  }
+  return (c == array.size() - 2);
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -37,6 +45,8 @@ int main() {
   std::cout << largestNumInArray(array, array[0], 0);
   std::cout << '\n';
   std::cout << secondLargest(array);
+  std::cout << '\n';
+  std::cout << isSorted({1, 1,2,2,4,4,5,5});
   std::cout << '\n';
 
   return 0;
