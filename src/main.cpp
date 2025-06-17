@@ -48,6 +48,26 @@ void removeDupes(std::vector<int> &array) {
   }
 }
 
+void printArray(std::vector<int> array) {
+  for (auto it : array) {
+    std::cout << it << " ";
+  }
+  std::cout << '\n';
+}
+
+void leftRotateByOne(std::vector<int> &array) {
+
+  int firstElement{array[0]};
+  for (int i{0}; i + 1 < array.size(); ++i) {
+    array[i] = array[i + 1];
+  }
+  array[array.size() - 1] = firstElement;
+
+  // Second Logic
+  // array.push_back(array[0]);
+  // array.erase(array.begin());
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -61,10 +81,10 @@ int main() {
   std::cout << '\n';
 
   removeDupes(array);
-  for (auto it : array) {
-    std::cout << it << " ";
-  }
-  std::cout << '\n';
+  printArray(array);
+
+  leftRotateByOne(array);
+  printArray(array);
 
   return 0;
 }
