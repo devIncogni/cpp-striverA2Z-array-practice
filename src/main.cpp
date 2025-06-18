@@ -1,6 +1,7 @@
 #include <climits>
 #include <cstdio>
 #include <iostream>
+#include <utility>
 #include <vector>
 
 int largestNumInArray(std::vector<int> array, int max, int pointer) {
@@ -68,6 +69,23 @@ void leftRotateByOne(std::vector<int> &array) {
   // array.erase(array.begin());
 }
 
+void reverseArray(std::vector<int> &array, int start, int end) {
+
+  int j{end};
+  for (int i{start}; i <= j; ++i) {
+
+    std::swap(array[i], array[j--]);
+  }
+}
+
+void leftRotateByN(std::vector<int> &array, int N) {
+
+  reverseArray(array, 0, N-1);
+  reverseArray(array, N, array.size()-1);
+  reverseArray(array, 0, array.size()-1);
+  
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -84,6 +102,9 @@ int main() {
   printArray(array);
 
   leftRotateByOne(array);
+  printArray(array);
+
+  leftRotateByN(array, 5);
   printArray(array);
 
   return 0;
