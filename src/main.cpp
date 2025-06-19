@@ -104,6 +104,31 @@ void moveZerosToEnd(std::vector<int> &array) {
   }
 }
 
+std::vector<int> findUnion(std::vector<int> array1, std::vector<int> array2) {
+
+  std::vector<int> unionArray;
+
+  int i{0}, j{0};
+
+  while (i < array1.size() && j < array2.size()) {
+    if (array1[i] < array2[j]) {
+      ++i;
+    }
+    if (array2[j] < array1[i]) {
+      ++j;
+    }
+
+    if (array1[i] == array2[j]) {
+      if (unionArray.empty() || unionArray.back() != array1[i]) {
+        unionArray.push_back(array1[i]);
+      }
+      ++i;
+      ++j;
+    }
+  }
+  return unionArray;
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -124,9 +149,11 @@ int main() {
 
   // leftRotateByN(array, 5);
   // printArray(array);
-  printArray(array);
-  moveZerosToEnd(array);
-  printArray(array);
+  // printArray(array);
+  // moveZerosToEnd(array);
+  // printArray(array);
 
+  printArray(findUnion({1, 2, 3, 3, 4, 5, 6, 7, 8, 9},
+                       {3, 3, 3, 6, 7, 8, 9, 10, 11, 12}));
   return 0;
 }
