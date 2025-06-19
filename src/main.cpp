@@ -80,17 +80,35 @@ void reverseArray(std::vector<int> &array, int start, int end) {
 
 void leftRotateByN(std::vector<int> &array, int N) {
 
-  reverseArray(array, 0, N-1);
-  reverseArray(array, N, array.size()-1);
-  reverseArray(array, 0, array.size()-1);
-  
+  reverseArray(array, 0, N - 1);
+  reverseArray(array, N, array.size() - 1);
+  reverseArray(array, 0, array.size() - 1);
+}
+
+void moveZerosToEnd(std::vector<int> &array) {
+
+  int j{0};
+  for (int i{0}; i < array.size(); ++i) {
+    if (array[i] != 0) {
+      continue;
+    } else {
+      j = i + 1 >= array.size() ? i : i + 1;
+      while (array[j] == 0 && j < array.size()) {
+        ++j;
+        if (j == array.size()) {
+          return;
+        }
+      }
+      std::swap(array[i], array[j]);
+    }
+  }
 }
 
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
 
-  std::vector<int> array{1, 5, 4, 7, 9, 3, 6, 4, -5};
+  std::vector<int> array{0, 5, 0, 0, 9, 3, 6, 4, -5};
   std::cout << largestNumInArray(array, array[0], 0);
   std::cout << '\n';
   std::cout << secondLargest(array);
@@ -98,13 +116,16 @@ int main() {
   std::cout << isSorted({1, 1, 2, 2, 4, 4, 5, 5});
   std::cout << '\n';
 
-  removeDupes(array);
-  printArray(array);
+  // removeDupes(array);
+  // printArray(array);
 
-  leftRotateByOne(array);
-  printArray(array);
+  // leftRotateByOne(array);
+  // printArray(array);
 
-  leftRotateByN(array, 5);
+  // leftRotateByN(array, 5);
+  // printArray(array);
+  printArray(array);
+  moveZerosToEnd(array);
   printArray(array);
 
   return 0;
