@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <iostream>
 #include <map>
+#include <set>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -161,6 +162,24 @@ std::vector<int> findUnionUsingMap(std::vector<int> array1,
   return unionArray;
 }
 
+std::vector<int> findUnionUsingSet(std::vector<int> array1,
+                                   std::vector<int> array2) {
+
+  std::vector<int> unionArray;
+  std::set<int> setOfUnion;
+  for (auto it : array1) {
+    setOfUnion.insert(it);
+  }
+  for (auto it : array2) {
+    setOfUnion.insert(it);
+  }
+
+  for (auto it : setOfUnion) {
+    unionArray.push_back(it);
+  }
+  return unionArray;
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -185,7 +204,7 @@ int main() {
   // moveZerosToEnd(array);
   // printArray(array);
 
-  printArray(findUnion({1, 2, 3, 3, 4, 5, 6, 7, 8, 9},
+  printArray(findUnionUsingSet({1, 2, 3, 3, 4, 5, 6, 7, 8, 9},
                        {3, 3, 3, 6, 7, 8, 9, 10, 11, 12}));
   return 0;
 }
