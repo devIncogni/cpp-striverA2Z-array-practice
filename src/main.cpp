@@ -255,6 +255,35 @@ int elementAppearsOnceXOR(std::vector<int> array) {
   return XOR;
 }
 
+int longestSubArrayWithSum(std::vector<int> array, int sum) {
+
+  std::vector<int> subArray;
+  int sumSubArr{};
+  int maxSize{};
+
+  for (int i{}; i < array.size(); ++i) {
+    sumSubArr = 0;
+    subArray.clear();
+
+    for (int j{i}; j < array.size(); ++j) {
+      sumSubArr = 0;
+      subArray.push_back(array[j]);
+
+      for (auto it : subArray) {
+        sumSubArr += it;
+      }
+      if (sumSubArr == sum) {
+        maxSize = std::max(static_cast<int>(subArray.size()), maxSize);
+        break;
+      }
+      if (sumSubArr > sum) {
+        break;
+      }
+    }
+  }
+  return maxSize;
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -283,7 +312,7 @@ int main() {
   // std::cout << findMissingXOR({1, 2, 3, 5, 6, 7, 8});
   // std::cout << '\n';
 
-  std::cout << elementAppearsOnceXOR({1, 1, 2, 3, 3, 4, 4, 5, 5, 6, 7, 6, 7});
+  std::cout << longestSubArrayWithSum({1, 2, 3, 4, 5, 5, 1, 5, 2, 1, 1}, 10);
   std::cout << '\n';
 
   return 0;
