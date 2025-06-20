@@ -266,12 +266,10 @@ int longestSubArrayWithSum(std::vector<int> array, int sum) {
     subArray.clear();
 
     for (int j{i}; j < array.size(); ++j) {
-      sumSubArr = 0;
+      // sumSubArr = 0;
       subArray.push_back(array[j]);
+      sumSubArr += array[j];
 
-      for (auto it : subArray) {
-        sumSubArr += it;
-      }
       if (sumSubArr == sum) {
         maxSize = std::max(static_cast<int>(subArray.size()), maxSize);
         break;
