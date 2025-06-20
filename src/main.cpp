@@ -1,10 +1,8 @@
+#include <algorithm>
 #include <climits>
-#include <cstddef>
-#include <cstdio>
 #include <iostream>
 #include <map>
 #include <set>
-#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -216,6 +214,22 @@ int findMissingXOR(std::vector<int> array) {
   return XOR1 ^ XOR2;
 }
 
+int maxConsecutiveOnes(std::vector<int> binaryArray) {
+
+  int counter{0};
+  int max{0};
+
+  for (auto it : binaryArray) {
+    if (it == 1) {
+      counter++;
+    } else {
+      max = std::max(counter, max);
+      counter = 0;
+    }
+  }
+  return max;
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -241,7 +255,11 @@ int main() {
   // moveZerosToEnd(array);
   // printArray(array);
 
-  std::cout << findMissingXOR({1, 2, 3, 5, 6, 7, 8});
+  // std::cout << findMissingXOR({1, 2, 3, 5, 6, 7, 8});
+  // std::cout << '\n';
+
+  std::cout << maxConsecutiveOnes(
+      {1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0});
   std::cout << '\n';
 
   return 0;
