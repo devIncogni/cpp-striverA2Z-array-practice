@@ -1,6 +1,8 @@
 #include <climits>
 #include <cstdio>
 #include <iostream>
+#include <map>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -110,21 +112,55 @@ std::vector<int> findUnion(std::vector<int> array1, std::vector<int> array2) {
 
   int i{0}, j{0};
 
-  while (i < array1.size() && j < array2.size()) {
-    if (array1[i] < array2[j]) {
-      ++i;
-    }
-    if (array2[j] < array1[i]) {
-      ++j;
-    }
-
-    if (array1[i] == array2[j]) {
+  while (i < array1.size() || j < array2.size()) {
+    if (i < array1.size() && j < array2.size() && array1[i] <= array2[j]) {
       if (unionArray.empty() || unionArray.back() != array1[i]) {
         unionArray.push_back(array1[i]);
       }
       ++i;
+    }
+
+    if (i < array1.size() && j < array2.size() && array2[j] <= array1[i]) {
+      if (unionArray.empty() || unionArray.back() != array2[j]) {
+        unionArray.push_back(array2[j]);
+      }
       ++j;
     }
+
+    if (i >= array1.size() && j < array2.size()) {
+      if (unionArray.empty() || unionArray.back() != array2[j]) {
+        unionArray.push_back(array2[j]);
+      }
+      ++j;
+    }
+
+    if (j >= array2.size() && i < array1.size()) {
+      if (unionArray.empty() || unionArray.back() != array1[i]) {
+        unionArray.push_back(array1[i]);
+      }
+      ++i;
+    }
+  }
+  return unionArray;
+}
+
+std::vector<int> findUnionUsingMap(std::vector<int> array1,
+                                   std::vector<int> array2) {
+
+  std::vector<int> unionArray;
+
+  std::map<int, int> mapElements;
+  for (auto it : array1) {
+    mapElements[it]++;
+  }
+
+  for (auto it : array2) {
+    mapElements[it]++;
+  }
+
+  for (auto it : mapElements) {
+
+    unionArray.push_back(it.first);
   }
   return unionArray;
 }
@@ -153,7 +189,7 @@ int main() {
   // moveZerosToEnd(array);
   // printArray(array);
 
-  printArray(findUnion({1, 2, 3, 3, 4, 5, 6, 7, 8, 9},
-                       {3, 3, 3, 6, 7, 8, 9, 10, 11, 12}));
+  printArray(findUnionUsingMap({1, 2, 3, 3, 4, 5, 6, 7, 8, 9},
+                               {3, 3, 3, 6, 7, 8, 9, 10, 11, 12}));
   return 0;
 }
