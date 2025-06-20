@@ -112,34 +112,30 @@ std::vector<int> findUnion(std::vector<int> array1, std::vector<int> array2) {
 
   int i{0}, j{0};
 
-  while (i < array1.size() || j < array2.size()) {
-    if (i < array1.size() && j < array2.size() && array1[i] <= array2[j]) {
+  while (i < array1.size() && j < array2.size()) {
+    if (array1[i] <= array2[j]) {
       if (unionArray.empty() || unionArray.back() != array1[i]) {
         unionArray.push_back(array1[i]);
       }
       ++i;
-    }
-
-    if (i < array1.size() && j < array2.size() && array2[j] <= array1[i]) {
+    } else {
       if (unionArray.empty() || unionArray.back() != array2[j]) {
         unionArray.push_back(array2[j]);
       }
       ++j;
     }
-
-    if (i >= array1.size() && j < array2.size()) {
-      if (unionArray.empty() || unionArray.back() != array2[j]) {
-        unionArray.push_back(array2[j]);
-      }
-      ++j;
+  }
+  while (i < array1.size()) {
+    if (unionArray.empty() || unionArray.back() != array1[i]) {
+      unionArray.push_back(array1[i]);
     }
-
-    if (j >= array2.size() && i < array1.size()) {
-      if (unionArray.empty() || unionArray.back() != array1[i]) {
-        unionArray.push_back(array1[i]);
-      }
-      ++i;
+    ++i;
+  }
+  while (j < array2.size()) {
+    if (unionArray.empty() || unionArray.back() != array2[j]) {
+      unionArray.push_back(array2[j]);
     }
+    ++j;
   }
   return unionArray;
 }
@@ -189,7 +185,7 @@ int main() {
   // moveZerosToEnd(array);
   // printArray(array);
 
-  printArray(findUnionUsingMap({1, 2, 3, 3, 4, 5, 6, 7, 8, 9},
-                               {3, 3, 3, 6, 7, 8, 9, 10, 11, 12}));
+  printArray(findUnion({1, 2, 3, 3, 4, 5, 6, 7, 8, 9},
+                       {3, 3, 3, 6, 7, 8, 9, 10, 11, 12}));
   return 0;
 }
