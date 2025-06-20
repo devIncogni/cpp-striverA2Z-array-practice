@@ -1,4 +1,5 @@
 #include <climits>
+#include <cstddef>
 #include <cstdio>
 #include <iostream>
 #include <map>
@@ -180,17 +181,53 @@ std::vector<int> findUnionUsingSet(std::vector<int> array1,
   return unionArray;
 }
 
+int findMissing(std::vector<int> array) {
+
+  for (int i{}; i < array.size(); ++i) {
+    if (i + 1 != array[i]) {
+      return i + 1;
+    }
+  }
+  return 0;
+}
+
+int findMissingSum(std::vector<int> array) {
+  int N{static_cast<int>(array.size() + 1)};
+  int s1{N * (N + 1) / 2};
+
+  int s2{};
+  for (auto it : array) {
+    s2 += it;
+  }
+
+  return s1 - s2;
+}
+
+int findMissingXOR(std::vector<int> array) {
+
+  int XOR1{}, XOR2{};
+  for (int i{}; i < array.size(); ++i) {
+    XOR1 ^= array[i];
+    XOR2 ^= i + 1;
+  }
+
+  XOR2 ^= array.size() + 1;
+
+  return XOR1 ^ XOR2;
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
 
   std::vector<int> array{0, 5, 0, 0, 9, 3, 6, 4, -5};
-  std::cout << largestNumInArray(array, array[0], 0);
-  std::cout << '\n';
-  std::cout << secondLargest(array);
-  std::cout << '\n';
-  std::cout << isSorted({1, 1, 2, 2, 4, 4, 5, 5});
-  std::cout << '\n';
+
+  // std::cout << largestNumInArray(array, array[0], 0);
+  // std::cout << '\n';
+  // std::cout << secondLargest(array);
+  // std::cout << '\n';
+  // std::cout << isSorted({1, 1, 2, 2, 4, 4, 5, 5});
+  // std::cout << '\n';
 
   // removeDupes(array);
   // printArray(array);
@@ -204,7 +241,8 @@ int main() {
   // moveZerosToEnd(array);
   // printArray(array);
 
-  printArray(findUnionUsingSet({1, 2, 3, 3, 4, 5, 6, 7, 8, 9},
-                       {3, 3, 3, 6, 7, 8, 9, 10, 11, 12}));
+  std::cout << findMissingXOR({1, 2, 3, 5, 6, 7, 8});
+  std::cout << '\n';
+
   return 0;
 }
