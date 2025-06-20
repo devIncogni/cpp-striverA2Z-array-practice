@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 #include <set>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -230,6 +231,30 @@ int maxConsecutiveOnes(std::vector<int> binaryArray) {
   return max;
 }
 
+int elementAppearsOnce(std::vector<int> array) {
+  std::unordered_map<int, int> freq;
+
+  for (auto it : array) {
+    freq[it]++;
+  }
+
+  for (auto it : freq) {
+    if (it.second == 1) {
+      return it.first;
+    }
+  }
+  return 0;
+}
+
+int elementAppearsOnceXOR(std::vector<int> array) {
+
+  int XOR{};
+  for (auto it : array) {
+    XOR ^= it;
+  }
+  return XOR;
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -258,8 +283,7 @@ int main() {
   // std::cout << findMissingXOR({1, 2, 3, 5, 6, 7, 8});
   // std::cout << '\n';
 
-  std::cout << maxConsecutiveOnes(
-      {1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0});
+  std::cout << elementAppearsOnceXOR({1, 1, 2, 3, 3, 4, 4, 5, 5, 6, 7, 6, 7});
   std::cout << '\n';
 
   return 0;
