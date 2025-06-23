@@ -282,6 +282,29 @@ int longestSubArrayWithSum(std::vector<int> array, int sum) {
   return maxSize;
 }
 
+int longestSubArrayWithSumHash(std::vector<int> array, int sum) {
+  std::unordered_map<int, int> prefixSum;
+  int sumArr{0};
+  int remainderSum{};
+  int maxLen{0};
+
+  for (int i{}; i < array.size(); ++i) {
+    sumArr += array[i];
+    prefixSum[sumArr] = i;
+
+    remainderSum = sumArr - sum;
+
+    if (sumArr == sum) {
+      maxLen = std::max(maxLen, i);
+    }
+
+    if (prefixSum.find(remainderSum) != prefixSum.end()) {
+      maxLen = std::max(maxLen, i - prefixSum[remainderSum]);
+    }
+  }
+  return maxLen;
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
@@ -310,7 +333,7 @@ int main() {
   // std::cout << findMissingXOR({1, 2, 3, 5, 6, 7, 8});
   // std::cout << '\n';
 
-  std::cout << longestSubArrayWithSum({1, 2, 3, 4, 5, 5, 1, 5, 2, 1, 1}, 10);
+  std::cout << longestSubArrayWithSumHash({1, 2, 3, 4, 5, 5, 1, 5, 2, 1, 1}, 10);
   std::cout << '\n';
 
   return 0;
