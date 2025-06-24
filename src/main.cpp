@@ -299,7 +299,7 @@ int longestSubArrayWithSumHash(std::vector<int> array, int sum) {
     remainderSum = sumArr - sum;
 
     if (sumArr == sum) {
-      maxLen = std::max(maxLen, i);
+      maxLen = std::max(maxLen, i+1);
     }
 
     if (prefixSum.find(remainderSum) != prefixSum.end()) {
@@ -339,8 +339,7 @@ int main() {
 
   std::vector<int> array{0, 5, 0, 0, 9, 3, 6, 4, -5};
 
-  std::cout << longestSubArrayWithSumTwoPointer(
-      {1, 2, 3, 4, 5, 5, 1, 5, 2, 1, 1}, 10);
+  std::cout << longestSubArrayWithSumTwoPointer({-1, 1, 1}, 1);
   std::cout << '\n';
 
   return 0;
