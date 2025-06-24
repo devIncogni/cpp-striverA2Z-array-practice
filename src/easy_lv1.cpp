@@ -1,9 +1,4 @@
 #include "./easy_lv1.h"
-#include <climits>
-#include <map>
-#include <set>
-#include <unordered_map>
-#include <vector>
 
 int largestNumInArray(std::vector<int> array, int max, int pointer) {
   if (pointer == array.size()) {
@@ -289,7 +284,7 @@ int longestSubArrayWithSumHash(std::vector<int> array, int sum) {
     remainderSum = sumArr - sum;
 
     if (sumArr == sum) {
-      maxLen = std::max(maxLen, i+1);
+      maxLen = std::max(maxLen, i + 1);
     }
 
     if (prefixSum.find(remainderSum) != prefixSum.end()) {
