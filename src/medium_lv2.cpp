@@ -68,7 +68,7 @@ std::string twoSumV1TwoPointer(std::vector<int> array, int sum) {
   return "NO";
 }
 
-std::pair<int, int> twoSumV2TwoPointer(std::vector<int> array, int sum) {
+std::pair<int, int> twoSumV2TwoPointer(std::vector<int> &array, int sum) {
   std::sort(array.begin(), array.end());
   int left{0}, right{static_cast<int>(array.size() - 1)};
 

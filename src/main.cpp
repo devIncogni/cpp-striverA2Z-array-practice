@@ -19,10 +19,10 @@ int main() {
 
   std::cout << twoSumV1TwoPointer(array, 10);
 
-  std::pair<int, int> twoSum = twoSumV2(array, 10);
+  std::pair<int, int> twoSum = twoSumV2TwoPointer(array, 10);
   std::cout << twoSum.first << ',' << twoSum.second;
 
   std::cout << '\n';
-
+  printArray(array);
   return 0;
 }
