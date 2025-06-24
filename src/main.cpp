@@ -19,7 +19,7 @@ int main() {
 
   
   std::vector<int> arr012{2,1,2,0,2,1,1,0,0};
-  sort012(arr012);
+  sort012v2(arr012);
   printArray(arr012);
 
   return 0;

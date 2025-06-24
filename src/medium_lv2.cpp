@@ -123,3 +123,24 @@ void sort012(std::vector<int> &array) {
     --t;
   }
 }
+
+void sort012v2(std::vector<int> &array) {
+
+  int start{0}, end{static_cast<int>(array.size() - 1)}, mid{0};
+  while (mid < end) {
+    if (array[mid] == 0) {
+      std::swap(array[start], array[mid]);
+      ++start;
+      ++mid;
+    }
+
+    else if (array[mid] == 2) {
+      std::swap(array[end], array[mid]);
+      --end;
+    }
+
+    else {
+      ++mid;
+    }
+  }
+}
