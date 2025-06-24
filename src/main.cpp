@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <climits>
+#include <complex>
 #include <iostream>
 #include <map>
 #include <set>
@@ -290,7 +291,10 @@ int longestSubArrayWithSumHash(std::vector<int> array, int sum) {
 
   for (int i{}; i < array.size(); ++i) {
     sumArr += array[i];
-    prefixSum[sumArr] = i;
+
+    if (prefixSum.find(sumArr) == prefixSum.end()) {
+      prefixSum[sumArr] = i;
+    }
 
     remainderSum = sumArr - sum;
 
@@ -305,35 +309,38 @@ int longestSubArrayWithSumHash(std::vector<int> array, int sum) {
   return maxLen;
 }
 
+int longestSubArrayWithSumTwoPointer(std::vector<int> array, int sum) {
+
+  int left{0}, right{0}, sumArr{array[0]};
+  int maxLen{0};
+
+  while (right < array.size()) {
+
+    while (left <= right && sumArr > sum) {
+      sumArr -= array[left++];
+    }
+
+    if (sumArr == sum) {
+      maxLen = std::max(maxLen, right - left + 1);
+    }
+
+    right++;
+    if (right < array.size()) {
+      sumArr += array[right];
+    }
+  }
+
+  return maxLen;
+}
+
 int main() {
   std::cout << "Welcome to array practice. All Solutions to Array problems in "
                "Strivers A2Z DSA Sheet\n";
 
   std::vector<int> array{0, 5, 0, 0, 9, 3, 6, 4, -5};
 
-  // std::cout << largestNumInArray(array, array[0], 0);
-  // std::cout << '\n';
-  // std::cout << secondLargest(array);
-  // std::cout << '\n';
-  // std::cout << isSorted({1, 1, 2, 2, 4, 4, 5, 5});
-  // std::cout << '\n';
-
-  // removeDupes(array);
-  // printArray(array);
-
-  // leftRotateByOne(array);
-  // printArray(array);
-
-  // leftRotateByN(array, 5);
-  // printArray(array);
-  // printArray(array);
-  // moveZerosToEnd(array);
-  // printArray(array);
-
-  // std::cout << findMissingXOR({1, 2, 3, 5, 6, 7, 8});
-  // std::cout << '\n';
-
-  std::cout << longestSubArrayWithSumHash({1, 2, 3, 4, 5, 5, 1, 5, 2, 1, 1}, 10);
+  std::cout << longestSubArrayWithSumTwoPointer(
+      {1, 2, 3, 4, 5, 5, 1, 5, 2, 1, 1}, 10);
   std::cout << '\n';
 
   return 0;
