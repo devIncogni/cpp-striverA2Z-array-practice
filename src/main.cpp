@@ -17,7 +17,7 @@ int main() {
 
   std::vector<int> array{0, 3, 0, 0, 9, 3, 6, 4, 5};
 
-  std::cout << twoSumV1(array, 10);
+  std::cout << twoSumV1TwoPointer(array, 10);
 
   std::pair<int, int> twoSum = twoSumV2(array, 10);
   std::cout << twoSum.first << ',' << twoSum.second;
