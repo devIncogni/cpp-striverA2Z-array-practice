@@ -89,3 +89,37 @@ std::pair<int, int> twoSumV2TwoPointer(std::vector<int> &array, int sum) {
   }
   return {-1, -1};
 }
+
+void sort012(std::vector<int> &array) {
+
+  int z{0}, o{0}, t{0};
+
+  for (auto it : array) {
+    if (it == 0) {
+      z++;
+    }
+
+    else if (it == 1) {
+      o++;
+    }
+
+    else {
+      t++;
+    }
+  }
+
+  int i{0};
+
+  while (z > 0) {
+    array[i++] = 0;
+    --z;
+  }
+  while (o > 0) {
+    array[i++] = 1;
+    --o;
+  }
+  while (t > 0) {
+    array[i++] = 2;
+    --t;
+  }
+}

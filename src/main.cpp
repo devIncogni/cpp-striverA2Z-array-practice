@@ -17,12 +17,10 @@ int main() {
 
   std::vector<int> array{0, 3, 0, 0, 9, 3, 6, 4, 5};
 
-  std::cout << twoSumV1TwoPointer(array, 10);
+  
+  std::vector<int> arr012{2,1,2,0,2,1,1,0,0};
+  sort012(arr012);
+  printArray(arr012);
 
-  std::pair<int, int> twoSum = twoSumV2TwoPointer(array, 10);
-  std::cout << twoSum.first << ',' << twoSum.second;
-
-  std::cout << '\n';
-  printArray(array);
   return 0;
 }
