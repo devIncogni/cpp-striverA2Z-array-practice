@@ -144,3 +144,22 @@ void sort012v2(std::vector<int> &array) {
     }
   }
 }
+
+int majorityElement(std::vector<int> array) {
+
+  std::unordered_map<int, int> freq;
+
+  for (int element : array) {
+    freq[element]++;
+  }
+
+  std::pair<int, int> highest{0, 0};
+
+  for (auto it : freq) {
+    if (it.second > array.size() / 2) {
+      return it.first;
+    }
+  }
+
+  return -1;
+}

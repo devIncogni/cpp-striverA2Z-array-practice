@@ -1,7 +1,6 @@
 #include "./easy_lv1.h"
 #include "medium_lv2.h"
 #include <iostream>
-#include <utility>
 #include <vector>
 
 void printArray(std::vector<int> array) {
@@ -21,6 +20,9 @@ int main() {
   std::vector<int> arr012{2,1,2,0,2,1,1,0,0};
   sort012v2(arr012);
   printArray(arr012);
+
+  std::cout << majorityElement({4,4,2,4,3,4,4,3,2,4});
+  std::cout << '\n';
 
   return 0;
 }
