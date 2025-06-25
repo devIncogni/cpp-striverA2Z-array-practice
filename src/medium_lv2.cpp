@@ -163,3 +163,23 @@ int majorityElement(std::vector<int> array) {
 
   return -1;
 }
+
+int majorityElementMoore(std::vector<int> array) {
+
+  int count{0}, element{};
+  for (int i{0}; i < array.size(); ++i) {
+    if (count == 0) {
+      element = array[i];
+      count = 1;
+    }
+
+    else if (array[i] == element) {
+      count++;
+    }
+
+    else {
+      count--;
+    }
+  }
+  return element;
+}

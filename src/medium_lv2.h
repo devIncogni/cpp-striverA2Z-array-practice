@@ -16,4 +16,6 @@ void sort012v2(std::vector<int> &array);
 
 int majorityElement(std::vector<int> array);
 
+int majorityElementMoore(std::vector<int> array);
+
 #endif

@@ -21,7 +21,7 @@ int main() {
   sort012v2(arr012);
   printArray(arr012);
 
-  std::cout << majorityElement({4,4,2,4,3,4,4,3,2,4});
+  std::cout << majorityElementMoore({4,4,2,4,3,4,4,3,2,4});
   std::cout << '\n';
 
   return 0;
